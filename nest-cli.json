@@ -1,0 +1,59 @@
+{
+    "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/nest-monorepo-assignment/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/nest-monorepo-assignment/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/nest-monorepo-assignment",
+  "projects": {
+    "gateway": {
+      "type": "application",
+      "root": "apps/gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/gateway/tsconfig.app.json"
+      }
+    },
+    "authentication": {
+      "type": "application",
+      "root": "apps/authentication",
+      "entryFile": "main",
+      "sourceRoot": "apps/authentication/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/authentication/tsconfig.app.json"
+      }
+    },
+    "common": {
+      "type": "library",
+      "root": "common",
+      "entryFile": "index",
+      "sourceRoot": "common/src",
+      "compilerOptions": {
+        "tsConfigPath": "common/tsconfig.lib.json"
+      }
+    },
+    "core": {
+      "type": "library",
+      "root": "core",
+      "entryFile": "index",
+      "sourceRoot": "core/src",
+      "compilerOptions": {
+        "tsConfigPath": "core/tsconfig.lib.json"
+      }
+    },
+    "config": {
+      "type": "library",
+      "root": "config",
+      "entryFile": "index",
+      "sourceRoot": "config/src",
+      "compilerOptions": {
+        "tsConfigPath": "config/tsconfig.lib.json"
+      }
+    }
+  }
+}

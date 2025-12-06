@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  authentication:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.auth
+    depends_on:
+      - mongo
+
+  gateway:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - authentication
+    environment:
+      - GATEWAY_PORT=3000
+      - AUTH_MICROSERVICE_HOST=authentication
+      - AUTH_MICROSERVICE_PORT=4001
+
+volumes:
+  mongo_data:
